@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nykaa Strategic Outreach | Editorial Velocity</title>
+
+    <!-- Preload Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;800&family=Inter:wght@400;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF4587',
+                        secondary: '#000000',
+                        accent: '#22C55E',
+                        warning: '#F59E0B',
+                        dark: '#1A1A1A',
+                        paper: '#F4F4F4',
+                        white: '#FFFFFF',
+                    },
+                    fontFamily: {
+                        display: ['"Bricolage Grotesque"', 'sans-serif'],
+                        body: ['"Inter"', 'sans-serif'],
+                        mono: ['"Space Mono"', 'monospace'],
+                    },
+                    boxShadow: {
+                        'brutal': '6px 6px 0px #1A1A1A',
+                        'brutal-lg': '12px 12px 0px #1A1A1A',
+                        'brutal-hover': '2px 2px 0px #1A1A1A',
+                    },
+                    transitionTimingFunction: {
+                        'linear': 'linear',
+                    },
+                    animation: {
+                        'marquee': 'marquee 20s linear infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Neo-Brutalist CSS & Chart Animations -->
+    <style>
+        body {
+            background-color: #F4F4F4;
+            color: #1A1A1A;
+            overflow-x: hidden;
+        }
+
+        /* Generic Brutalist Utils */
+        .brutal-border {
+            border: 4px solid #1A1A1A;
+            border-radius: 0;
+        }
+
+        .brutal-btn {
+            transition: all 100ms linear;
+        }
+
+        .brutal-btn:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0px #1A1A1A;
+        }
+
+        /* Animation Classes (Triggered by JS Observer) */
+        .chart-bar-v {
+            height: 0%;
+            transition: height 2000ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .is-visible .chart-bar-v {
+            height: var(--target-h);
+        }
+
+        .chart-bar-h {
+            width: 0%;
+            transition: width 2000ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .is-visible .chart-bar-h {
+            width: var(--target-w);
+        }
+
+        .pie-chart {
+            background: conic-gradient(#FF4587 0deg 162deg,
+                    #000000 162deg 288deg,
+                    #22C55E 288deg 360deg);
+            transform: scale(0) rotate(-90deg);
+            transition: transform 2000ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .is-visible .pie-chart {
+            transform: scale(1) rotate(0deg);
+        }
+
+        .matrix-marker {
+            opacity: 0;
+            --tx: -50%;
+            --ty: -50%;
+            transform: translate(calc(var(--tx) - 20px), calc(var(--ty) + 20px));
+            transition: all 1500ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .is-visible .matrix-marker {
+            opacity: 1;
+            transform: translate(var(--tx), var(--ty));
+        }
+
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            border-top: 4px solid #1A1A1A;
+            border-bottom: 4px solid #1A1A1A;
+            background: #FF4587;
+            padding: 12px 0;
+        }
+
+        .ticker-wrap:hover .ticker-content {
+            animation-play-state: paused;
+        }
+
+        .ticker-content {
+            display: inline-block;
+            padding-left: 100%;
+        }
+
+        /* Zine Layout Specifics */
+        .zine-grid {
+            background-image: radial-gradient(#1A1A1A 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+
+<body class="font-body antialiased selection:bg-primary selection:text-white">
+
+    <!-- SLIDE 1: INTRODUCTION & HOOK -->
+    <section id="hero-intro"
+        class="relative min-h-[90vh] lg:min-h-screen flex flex-col justify-between pt-12 zine-grid">
+        <div class="px-6 lg:px-16 flex-grow flex flex-col justify-center">
+            <div class="lg:grid lg:grid-cols-12 gap-12 items-center">
+
+                <!-- Intro Copy (Medium Trim Applied for Laptop-Safe ATF) -->
+                <div class="lg:col-span-7 mb-12 lg:mb-0">
+                    <svg class="h-12 lg:h-16 w-auto mb-6" viewBox="22.7 45.5 465.7 155.7"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="m157.9 57.2c5-9.6-11.2-6.9-11.2-6.9-5.8 0-8.4 7-9.6 9l-17.5 34.5c-3.3 5.7-14.2 30.1-17.8 35.5-.3-5.5.1-16.5.2-19.1.7-10.4 1.4-18.3 2.5-27.8.8-7.4 2.4-15.7.9-23.1-1-4.6-2.5-4.9-9.1-5.6-6.9-.7-11.6 9.3-13.9 14-8.4 17.4-17.8 34.4-25.3 52.2-2.2 5.2-4.9 10.4-7.2 15.5-2.7 6.2-5.2 12.3-8.1 18.4-3.1 6.4-12.8 27.4-15.5 34-3 7.2-3.6 13 8.4 12.7 1.9 0 6.1.4 11.3-5.2 4.1-4.4 4.9-8.5 7.3-14.6 8.6-21.6 14.7-35.9 24.1-57.3.9-2.1 3-8.2 5.1-12.9-.1 6.7-1.2 14.7-1.7 20-1.6 19.4-2.7 38.1-4.4 57.3-.2 2.6-.9 5.7.3 8.1s4.2 3 6.6 3.3c9.6 1.2 10.6-3.6 13.6-10.2 2.7-5.9 4.3-10.7 6.7-16.7 7.4-18.5 15.2-36.8 23.8-54.8 2.2-4.6 4.4-9.1 6.8-13.6 4.4-8.3 8-16.1 12.8-25.3 3.6-6.6 7.1-14.1 10.9-21.4zm329.5 52.1c-1.1-11.1-16.3-5.5-25.4-3.8-3.4.6-13.9 2.6-26 4.9-.5-12.5-.3-10-.4-17.6-.3-11-.9-19.6-1.5-29.3-.4-6.1-1.3-14.6-12.3-13-12.8 1.8-14.9 8.2-18.3 15.9-8.9 20.1-8.6 20.2-18.7 42.6-.8 1.7-4.5 10.7-5.1 12.5-.4.1-1.2.3-2.2.6-4.1.9-9.1 2-14.6 3.2l.1-.5c1.3-10.2 2.9-20.4 4.3-30.6 1.3-9.3 2.7-24.5 3.8-33.8 1.2-10-10.4-9.8-10.4-9.8-7.1-.4-9.8 1.7-14.3 7.5-7.7 10-17 20.8-25.2 31.8-14.9 19.9-25.8 34.9-39.3 54.9-3.9 5.8-9.9 14.6-15.1 21.5-3.5-6.9-6.5-14.5-9.4-21.5-4.2-10-7.3-16.2-9.3-22.8-1.8-5.8.4-6.6 4.7-9.9 12.4-9.4 26.4-15.9 39.1-24.9 9-6.4 19.8-13.5 28.6-20.1 0 0 5.1-3 7.9-6.8 3.5-4.8-6.4-9.8-6.4-9.8-5.6-.9-8.7.4-12.6 2.2-4 1.8-9.2 5.9-12.6 8.6-7.5 5.8-17 12.7-24.4 18.5-9.1 7.1-15.3 11.5-25.3 17.4l25.4-38c8.3-10.7-13.7-13.7-22.1-2.4-7.8 10.1-13.1 19-19.2 28.2-14.7 21.9-26.8 44.9-38.9 69-4.6 9.2-9.1 18.8-13.3 28.3-2 4.6-7.9 15.2.2 16.3 17.3 2.2 20.1-6 24-15.9 6.4-16.3 8.5-19.3 12.6-29.4 4-9.8 6.9-15.4 11.4-23.8.1-.1 1.4-2.2 1.4-2.2.8 1.7 6.1 19.3 6.8 21.3 3.6 9.5 9.9 31.7 13.5 41.8 2.6 8.4 3.3 10.8 14.6 10.5 5.6-.1 8-2.3 11.7-9.3s19.7-36.8 19.7-36.8c4.8-.8 11.7-2 16.2-2.8.8-.1 2.6-.5 5.1-1 1.7-.2 3.1-.5 4.2-.8.1 0 .1 0 .2-.1 4.4-.9 10-2 16.1-3.2-1.1 5.5-4.5 17.6-5.2 20.7 0 0-7.4 28.8 2.2 30.3 6 .9 9.1-.1 9.1-.1 11.2-1.3 11.4-16.4 11.4-16.4l6.1-39.1c4.4-.9 8.8-1.8 13.1-2.6l-13.2 44.6c-1.9 6.3-3.3 14.4 8 14.4 9.2.5 9.8-5.3 9.8-5.3.2-.9 7.5-24.4 9.3-32.8 1.2-5.4 5.5-19.3 7.2-24.9 4.8-.9 8.4-1.6 10.1-1.9 2-.3 5.9-1 11-1.8-.1 5.2 0 12.4.1 13.4 1.1 15.8-.1 32.2 3.2 47.7.5 2.5 1.5 5.7 4.7 5.7 3.8 0 5-.4 9-.7 11.6-1 9.5-12.7 8.8-20.1-.8-8.2-1.6-15.1-2.7-23.3-.9-6.7-1.5-15.5-1.6-26.1v-.2c19-3.2 39.5-6.7 42.5-7.2 4.8-1.3 8.8-.9 7.8-11.9zm-148.5 21c0 .1-.1.1-.1.2-13.3 2.9-25.8 5.7-32.8 7.3 7-11.7 37.8-54.3 42.5-59.3-2.6 13.2-6.8 37.7-9.6 51.8zm76.8-16.8v.7c-6.4 1.2-12.4 2.4-17.2 3.3 6.1-15.8 12.5-35.2 16.3-45-.3 7.3 1.2 33.8.9 41zm-186.5-47.1c2-3.7 6.5-11 .9-13.8-3.3-1.6-7.7-2.6-11.1-.9-2.8 1.5-4.9 4.4-6.3 7.1l-21.4 33.7c-3.5 4.8-6.8 10.8-13.9 11.6-4.7.5-8.1-1.5-8-5.7.1-4.3 2.6-10 4.5-13.7 5.6-10.6 6.3-14.2 11.7-24.7 5.2-10.1-11.8-12.4-16-5.1-3 5.2-8.8 15-10.1 18.3-2.4 6-20.4 34.6-12.6 45.9 10 12.8 36.6-7.4 23 15.9-11 18.7-17.9 29.4-27.5 46.7-2.1 3.7-4.7 7.4-5.4 11.8-1 6.2 7.5 6.1 11.2 5.9 6.5-.5 9.6-3.5 12.2-9.4 1.4-3.1 3.3-6.9 4.7-10 12.6-27.5 26-51.4 42.6-78 7.9-12.6 14.9-23.4 21.5-35.6z"
+                            fill="#fc2779" />
+                    </svg>
+                    <div class="inline-block bg-dark text-white font-mono text-sm px-3 py-1 mb-6 brutal-border">PRODUCT
+                        INTERNSHIP // 2026</div>
+                    <h1 class="font-display font-extrabold text-5xl lg:text-7xl leading-[1.05] tracking-tight mb-8">
+                        Hi, I'm Kunj...<br><span class="text-primary">and here's what stands out about Nykaa!</span>
+                    </h1>
+                    <p
+                        class="text-lg lg:text-xl font-semibold leading-relaxed max-w-2xl bg-white p-6 brutal-border shadow-brutal">
+                        You've built India's definitive beauty ecosystem with <span
+                            class="font-bold underline decoration-primary decoration-4">100M+ app users</span>, 200+
+                        stores, and ~40% private label GMV. With Nykaa Quick and AI Beauty Advisors, you're meeting the
+                        speed shift. The next unlock is an <span class="bg-primary text-white px-1">AI-Personalized
+                            Ecosystem</span> that quick commerce cannot replicate.
+                    </p>
+                </div>
+
+                <!-- Impact Bar Chart -->
+                <div class="lg:col-span-5 relative mt-8 lg:mt-0">
+                    <div class="bg-white p-8 brutal-border shadow-brutal">
+                        <h3 class="font-mono text-xl mb-8 font-bold border-b-4 border-dark pb-2">METRIC FOUNDATION</h3>
+
+                        <div class="space-y-6">
+                            <div>
+                                <div class="font-mono text-sm font-bold uppercase mb-2">100M+ App Users</div>
+                                <div class="w-full bg-paper brutal-border h-12 relative flex items-center">
+                                    <div class="bg-primary h-full border-r-4 border-dark flex items-center px-4"
+                                        style="width: 100%;">
+                                        <span class="font-mono text-white font-bold">100% SCALE</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="font-mono text-sm font-bold uppercase mb-2">~40% Private Label GMV</div>
+                                <div class="w-full bg-paper brutal-border h-12 relative flex items-center">
+                                    <div class="bg-secondary h-full border-r-4 border-dark flex items-center px-4"
+                                        style="width: 70%;">
+                                        <span class="font-mono text-white font-bold">70% MARGIN DRIVER</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative">
+                                <div class="font-mono text-sm font-bold uppercase mb-2">200+ Stores</div>
+                                <div class="w-full bg-paper brutal-border h-12 relative flex items-center">
+                                    <div class="bg-accent h-full border-r-4 border-dark flex items-center px-4"
+                                        style="width: 50%;">
+                                        <span class="font-mono text-dark font-bold">50% REACH</span>
+                                    </div>
+                                </div>
+                                <!-- Stamp -->
+                                <div
+                                    class="absolute -right-4 -top-8 bg-warning text-dark font-mono font-bold px-3 py-1 brutal-border transform -rotate-12 hover:rotate-0 transition-transform">
+                                    OMNICHANNEL LEADER
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Infinite Ticker -->
+        <div class="ticker-wrap mt-12 bg-primary">
+            <div class="ticker-content font-mono font-bold text-xl text-dark uppercase animate-marquee">
+                Nykaa Quick Pilot Q4 2025 • AI Beauty Advisor Launch Q1 2026 • Fashion EBITDA Breakeven FY26 • 100M+ App
+                Downloads • Nykaa Quick Pilot Q4 2025 • AI Beauty Advisor Launch Q1 2026 • Fashion EBITDA Breakeven FY26
+                • 100M+ App Downloads •
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: USER ANALYSIS -->
+    <section id="user-analysis" class="py-24 px-6 lg:px-16 border-b-4 border-dark bg-white obs-section">
+        <div class="mb-16 max-w-4xl">
+            <h2 class="font-display font-extrabold text-4xl lg:text-6xl mb-6 uppercase tracking-tight">User
+                Analysis:<br> Who Buys, How They Shift, What's Next</h2>
+            <p class="text-xl font-medium leading-relaxed bg-paper p-4 brutal-border inline-block shadow-brutal">
+                Nykaa's base is <span class="bg-secondary text-white px-1">Millennial-led & Tier 1-heavy</span>. But
+                growth is shifting: Gen Z is 35%, Tier 2/3 brings 55% of new cohorts, and Men's grooming is growing 2x.
+                Leverage data to serve emerging segments while defending core loyalty.
+            </p>
+        </div>
+
+        <!-- 2x2 Data Wall Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+
+            <!-- Chart 1: Tier Split Pie -->
+            <div class="bg-paper p-8 brutal-border shadow-brutal relative flex flex-col items-center">
+                <h3 class="font-mono font-bold text-lg border-b-4 border-dark w-full pb-2 mb-8">GEO EXPANSION</h3>
+                <!-- Stamp -->
+                <div
+                    class="absolute top-6 right-6 bg-secondary text-white font-mono font-bold px-3 py-1 brutal-border transform rotate-6 z-10">
+                    GROWTH ENGINE
+                </div>
+
+                <div
+                    class="relative w-64 h-64 rounded-full brutal-border pie-chart flex items-center justify-center shadow-brutal-lg mb-8">
+                    <!-- Inner hole for donut-look to fit text -->
+                    <div
+                        class="w-32 h-32 bg-paper rounded-full brutal-border flex items-center justify-center z-10 absolute">
+                        <span class="font-mono font-bold text-center leading-tight">GEO<br>SPLIT</span>
+                    </div>
+                </div>
+                <!-- Legend inline -->
+                <div class="flex gap-4 font-mono text-sm font-bold flex-wrap justify-center w-full">
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-primary brutal-border mr-2"></div>Tier 1: 45%
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-secondary brutal-border mr-2"></div>Tier 2: 35%
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-accent brutal-border mr-2"></div>Tier 3+: 20%
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart 2: Age Demographics V-Bar -->
+            <div class="bg-paper p-8 brutal-border shadow-brutal flex flex-col">
+                <h3 class="font-mono font-bold text-lg border-b-4 border-dark w-full pb-2 mb-8">DEMOGRAPHICS</h3>
+                <div class="flex-grow flex items-end justify-around gap-4 h-64 border-b-4 border-dark pb-0">
+
+                    <!-- Bar 1 -->
+                    <div class="w-1/3 flex flex-col items-center justify-end h-full">
+                        <span class="font-mono font-bold mb-2">35%</span>
+                        <div class="w-full bg-primary brutal-border border-b-0 chart-bar-v"
+                            style="--target-h: 70%; transition-delay: 200ms;"></div>
+                        <span class="font-mono font-bold mt-2 text-center text-sm">Gen Z</span>
+                    </div>
+
+                    <!-- Bar 2 -->
+                    <div class="w-1/3 flex flex-col items-center justify-end h-full">
+                        <span class="font-mono font-bold mb-2">50%</span>
+                        <div class="w-full bg-secondary text-white brutal-border border-b-0 chart-bar-v flex flex-col justify-end items-center pb-2"
+                            style="--target-h: 100%; transition-delay: 400ms;"></div>
+                        <span class="font-mono font-bold mt-2 text-center text-sm">Millennials</span>
+                    </div>
+
+                    <!-- Bar 3 -->
+                    <div class="w-1/3 flex flex-col items-center justify-end h-full">
+                        <span class="font-mono font-bold mb-2">15%</span>
+                        <div class="w-full bg-white brutal-border border-b-0 chart-bar-v"
+                            style="--target-h: 30%; transition-delay: 600ms;"></div>
+                        <span class="font-mono font-bold mt-2 text-center text-sm">Gen X+</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart 3: Behavior Shift H-Bar -->
+            <div class="bg-paper p-8 brutal-border shadow-brutal relative">
+                <h3 class="font-mono font-bold text-lg border-b-4 border-dark w-full pb-2 mb-8">BEHAVIOR SHIFT (2024 →
+                    2026)</h3>
+                <!-- Stamp -->
+                <div
+                    class="absolute left-0 lg:-left-6 top-1/2 bg-warning text-dark font-mono font-bold px-3 py-1 brutal-border transform -translate-x-1/2 -translate-y-1/2 -rotate-90 z-10">
+                    SHIFT ALERT
+                </div>
+
+                <div class="space-y-8">
+                    <div class="relative">
+                        <div class="flex justify-between items-end mb-1">
+                            <span class="font-mono font-bold uppercase">Private Label Adoption</span>
+                            <span class="font-mono font-bold">30% &rarr; 40%</span>
+                        </div>
+                        <div class="w-full bg-white brutal-border h-10 flex relative">
+                            <!-- Baseline (2024) -->
+                            <div class="bg-primary opacity-40 h-full border-r-4 border-dark" style="width: 30%;"></div>
+                            <!-- Delta (Shift) -->
+                            <div class="bg-primary h-full border-r-4 border-dark chart-bar-h relative z-10"
+                                style="--target-w: 10%; transition-delay: 200ms;"></div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="flex justify-between items-end mb-1">
+                            <span class="font-mono font-bold uppercase">AI Tool Usage</span>
+                            <span class="font-mono font-bold">10% &rarr; 25%</span>
+                        </div>
+                        <div class="w-full bg-white brutal-border h-10 flex relative">
+                            <div class="bg-accent opacity-40 h-full border-r-4 border-dark" style="width: 10%;"></div>
+                            <div class="bg-accent h-full border-r-4 border-dark chart-bar-h relative z-10"
+                                style="--target-w: 15%; transition-delay: 400ms;"></div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="flex justify-between items-end mb-1">
+                            <span class="font-mono font-bold uppercase">Quick Commerce Expectation</span>
+                            <span class="font-mono font-bold">20% &rarr; 60%</span>
+                        </div>
+                        <div class="w-full bg-white brutal-border h-10 flex relative">
+                            <div class="bg-warning opacity-40 h-full border-r-4 border-dark" style="width: 20%;"></div>
+                            <div class="bg-warning h-full border-r-4 border-dark chart-bar-h relative z-10"
+                                style="--target-w: 40%; transition-delay: 600ms;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Legend -->
+                    <div class="flex items-center gap-6 mt-4 pt-6 border-t-4 border-dark font-mono text-sm font-bold">
+                        <div class="flex items-center gap-2">
+                            <div class="w-4 h-4 brutal-border bg-dark opacity-40"></div>
+                            <span>2024 Baseline</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-4 h-4 brutal-border bg-dark"></div>
+                            <span>2024 &rarr; 2026 Shift</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart 4: Segment Matrix -->
+            <div class="bg-paper p-8 brutal-border shadow-brutal flex flex-col relative">
+                <h3 class="font-mono font-bold text-lg border-b-4 border-dark w-full pb-2 mb-8">USER SEGMENT MATRIX</h3>
+
+                <div
+                    class="flex-grow border-t-4 border-r-4 border-l-4 border-b-4 border-dark relative h-64 bg-white matrix-grid overflow-hidden">
+                    <!-- Labels -->
+                    <div
+                        class="absolute left-[-10px] top-1/2 -translate-y-1/2 font-mono font-bold uppercase -rotate-90 origin-center text-xs tracking-widest px-1 z-10 bg-white">
+                        FREQ</div>
+                    <div
+                        class="absolute bottom-1 left-1/2 -translate-x-1/2 font-mono font-bold uppercase text-xs tracking-widest px-1 z-10 bg-white">
+                        AOV</div>
+
+                    <!-- Cross Grid -->
+                    <div class="absolute inset-x-0 top-1/2 border-t-[2px] border-dark border-dashed -translate-y-1/2">
+                    </div>
+                    <div class="absolute inset-y-0 left-1/2 border-l-[2px] border-dark border-dashed -translate-x-1/2">
+                    </div>
+
+                    <!-- Plot Markers -->
+                    <div class="absolute top-[25%] left-[75%] matrix-marker group" style="transition-delay: 300ms;">
+                        <div
+                            class="w-6 h-6 bg-primary brutal-border shadow-brutal-hover -translate-x-1/2 -translate-y-1/2 relative z-10">
+                        </div>
+                        <span
+                            class="absolute top-5 left-1/2 -translate-x-1/2 font-mono font-bold text-xs bg-white brutal-border px-1 w-max z-20">Premiums</span>
+                    </div>
+
+                    <div class="absolute top-[45%] left-[30%] matrix-marker" style="transition-delay: 500ms;">
+                        <div
+                            class="w-6 h-6 bg-secondary brutal-border shadow-brutal-hover -translate-x-1/2 -translate-y-1/2 relative z-10">
+                        </div>
+                        <span
+                            class="absolute top-5 left-1/2 -translate-x-1/2 font-mono font-bold text-xs bg-white brutal-border px-1 w-max z-20">Gen
+                            Z Explorers</span>
+                    </div>
+
+                    <div class="absolute top-[70%] left-[70%] matrix-marker" style="transition-delay: 900ms;">
+                        <div
+                            class="w-6 h-6 bg-dark brutal-border shadow-brutal-hover -translate-x-1/2 -translate-y-1/2 relative z-10">
+                        </div>
+                        <span
+                            class="absolute top-5 left-1/2 -translate-x-1/2 font-mono font-bold text-xs bg-white brutal-border px-1 w-max z-20 opacity-50">Occasional
+                            Splurge</span>
+                    </div>
+
+                    <div class="absolute top-[80%] left-[25%] matrix-marker" style="transition-delay: 700ms;">
+                        <div
+                            class="w-6 h-6 bg-warning brutal-border shadow-brutal-hover -translate-x-1/2 -translate-y-1/2 relative z-10">
+                        </div>
+                        <span
+                            class="absolute top-5 left-1/2 -translate-x-1/2 font-mono font-bold text-xs bg-white brutal-border px-1 w-max z-20">Deal
+                            Seekers</span>
+                    </div>
+
+                    <!-- Arrow LTV Path -->
+                    <div class="absolute matrix-marker z-0 pointer-events-none"
+                        style="--tx: 0px; --ty: 0px; top: 28%; left: 33%; width: 40%; height: 15%; transition-delay: 1300ms;">
+                        <!-- Curve using border -->
+                        <div
+                            class="w-full h-full border-b-[2px] border-r-[2px] border-dark border-dashed rounded-br-[100%] relative">
+                            <!-- Arrowhead -->
+                            <div
+                                class="absolute -top-[5px] -right-[5px] w-0 h-0 border-b-[8px] border-b-dark border-x-[4px] border-x-transparent transform rotate-12">
+                            </div>
+                        </div>
+                        <!-- Label -->
+                        <div
+                            class="absolute top-[100%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 font-mono font-bold bg-white border border-dark px-1 py-0.5 text-[10px] whitespace-nowrap z-20 mt-[2px]">
+                            LTV PATH</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: COMPETITOR LANDSCAPE -->
+    <section id="competitor-landscape" class="obs-section py-24 px-6 lg:px-16 border-b-4 border-dark bg-paper">
+        <h2 class="font-display font-extrabold text-4xl lg:text-6xl mb-6 uppercase tracking-tight">Competitive Landscape
+        </h2>
+        <p class="text-xl font-medium leading-relaxed max-w-4xl mb-16 brutal-border bg-white p-6 shadow-brutal">
+            Nykaa leads on <span
+                class="font-bold underline decoration-primary decoration-4 text-black">Community/Content Depth</span>
+            and <span class="font-bold underline decoration-primary decoration-4 text-black">Private Label Scale</span>.
+            Competitors attack on speed (Quick Commerce) or price (Purplle). Key gap: platforms combining inspiration,
+            personalization, and convenience win loyalty.
+        </p>
+
+        <!-- Competitor Container -->
+        <div class="flex flex-col gap-6">
+
+            <!-- Matrix -->
+            <div class="w-full bg-white p-8 brutal-border shadow-brutal relative h-[500px]">
+
+                <!-- Inner Chart Area -->
+                <div
+                    class="relative w-full h-full border-4 border-dark bg-white overflow-hidden flex items-center justify-center">
+
+                    <!-- X-Axis -->
+                    <div
+                        class="absolute w-full top-1/2 left-0 border-t-4 border-dark border-dashed -translate-y-1/2 z-0">
+                    </div>
+                    <!-- Y-Axis -->
+                    <div
+                        class="absolute h-full left-1/2 top-0 border-l-4 border-dark border-dashed -translate-x-1/2 z-0">
+                    </div>
+
+                    <!-- Axis Labels -->
+                    <!-- X-Left -->
+                    <div
+                        class="absolute left-0 top-1/2 -translate-y-1/2 bg-white px-2 ml-2 font-mono font-bold text-[12px] uppercase z-10 border-4 border-dark">
+                        Standard
+                    </div>
+                    <!-- X-Right -->
+                    <div
+                        class="absolute right-0 top-1/2 -translate-y-1/2 bg-white px-2 mr-2 font-mono font-bold text-[12px] uppercase z-10 border-4 border-dark">
+                        Instant / <30min </div>
+                            <!-- Y-Top -->
+                            <div
+                                class="absolute top-0 left-1/2 -translate-x-1/2 bg-white px-2 mt-2 font-mono font-bold text-[12px] uppercase z-10 border-4 border-dark">
+                                Inspirational
+                            </div>
+                            <!-- Y-Bottom -->
+                            <div
+                                class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-white px-2 mb-2 font-mono font-bold text-[12px] uppercase z-10 border-4 border-dark">
+                                Transactional
+                            </div>
+
+                            <!-- Quadrant Labels -->
+                            <div
+                                class="absolute top-4 left-4 font-body font-bold text-[14px] uppercase opacity-30 tracking-widest pointer-events-none text-dark">
+                                Standard &<br>Inspirational</div>
+                            <div
+                                class="absolute top-4 right-4 font-body font-bold text-[14px] uppercase opacity-30 tracking-widest text-right pointer-events-none text-dark">
+                                Instant &<br>Inspirational</div>
+                            <div
+                                class="absolute bottom-4 left-4 font-body font-bold text-[14px] uppercase opacity-30 tracking-widest pointer-events-none text-dark">
+                                Standard &<br>Transactional</div>
+                            <div
+                                class="absolute bottom-4 right-4 font-body font-bold text-[14px] uppercase opacity-30 tracking-widest text-right pointer-events-none text-dark">
+                                Instant &<br>Transactional</div>
+
+                            <!-- Markers -->
+
+                            <!-- Nykaa: Top-Middle (High Content, Improving Speed) -->
+                            <div class="absolute matrix-marker flex flex-col items-center"
+                                style="top: 20%; left: 50%; transition-delay: 200ms;">
+                                <div class="w-8 h-8 bg-primary border-4 border-dark shadow-brutal z-10"></div>
+                                <div
+                                    class="bg-white border-4 border-dark px-2 py-1 mt-2 font-mono font-bold text-sm uppercase z-20 whitespace-nowrap">
+                                    Nykaa
+                                </div>
+                            </div>
+
+                            <!-- Tira: Top-Left (Standard, Inspirational) -->
+                            <div class="absolute matrix-marker flex flex-col items-center"
+                                style="top: 20%; left: 15%; transition-delay: 400ms;">
+                                <div class="w-6 h-6 bg-dark border-4 border-dark z-10"></div>
+                                <div
+                                    class="bg-white border-4 border-dark px-2 py-0.5 mt-2 font-mono font-bold text-xs uppercase z-20 whitespace-nowrap">
+                                    Tira
+                                </div>
+                            </div>
+
+                            <!-- Purplle: Middle-Left -->
+                            <div class="absolute matrix-marker flex flex-col items-center"
+                                style="top: 50%; left: 15%; transition-delay: 600ms;">
+                                <div class="w-6 h-6 bg-dark border-4 border-dark z-10"></div>
+                                <div
+                                    class="bg-white border-4 border-dark px-2 py-0.5 mt-2 font-mono font-bold text-xs uppercase z-20 whitespace-nowrap">
+                                    Purplle
+                                </div>
+                            </div>
+
+                            <!-- Myntra: Middle-Middle -->
+                            <div class="absolute matrix-marker flex flex-col items-center"
+                                style="top: 50%; left: 50%; transition-delay: 800ms;">
+                                <div class="w-6 h-6 bg-dark border-4 border-dark z-10"></div>
+                                <div
+                                    class="bg-white border-4 border-dark px-2 py-0.5 mt-2 font-mono font-bold text-xs uppercase z-20 whitespace-nowrap">
+                                    Myntra
+                                </div>
+                            </div>
+
+                            <!-- Blinkit/Zepto: Bottom-Right (Instant, Transactional) -->
+                            <div class="absolute matrix-marker flex flex-col items-center"
+                                style="top: 80%; left: 85%; transition-delay: 1000ms;">
+                                <div class="w-6 h-6 bg-dark border-4 border-dark z-10"></div>
+                                <div
+                                    class="bg-white border-4 border-dark px-2 py-0.5 mt-2 font-mono font-bold text-xs uppercase z-20 whitespace-nowrap text-center">
+                                    Blinkit/Zepto
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+
+                <!-- Feature Snapshot (Badge Row) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Private Label GMV -->
+                    <div class="bg-white p-4 border-4 border-dark shadow-brutal flex flex-col justify-between">
+                        <span class="font-body font-bold text-sm uppercase mb-2 text-dark">Private Label GMV</span>
+                        <div class="font-mono text-base font-bold flex flex-col gap-1">
+                            <span class="text-primary">Nykaa: ~40%</span>
+                            <span class="text-dark opacity-80">Others: &lt;15%</span>
+                        </div>
+                    </div>
+
+                    <!-- Store Network -->
+                    <div class="bg-white p-4 border-4 border-dark shadow-brutal flex flex-col justify-between">
+                        <span class="font-body font-bold text-sm uppercase mb-2 text-dark">Store Network</span>
+                        <div class="font-mono text-base font-bold flex flex-col gap-1">
+                            <span class="text-primary">Nykaa: 200+</span>
+                            <span class="text-dark opacity-80">Others: &lt;50</span>
+                        </div>
+                    </div>
+
+                    <!-- AI Personalization -->
+                    <div class="bg-white p-4 border-4 border-dark shadow-brutal flex flex-col justify-between">
+                        <span class="font-body font-bold text-sm uppercase mb-2 text-dark">AI Personalization</span>
+                        <div class="font-mono text-base font-bold flex flex-col gap-1">
+                            <span class="text-primary">Nykaa: ✅</span>
+                            <span class="text-dark opacity-80">Others: ⚠️</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+    </section>
+
+    <!-- SLIDE 4: STRATEGIC ANALYSIS -->
+    <section id="swot-analysis" class="py-24 px-6 lg:px-16 border-b-4 border-dark bg-white zine-grid">
+        <h2
+            class="font-display font-extrabold text-4xl lg:text-6xl mb-12 uppercase tracking-tight bg-white inline-block px-4 py-2 brutal-border shadow-brutal">
+            Strategic Analysis & Drivers</h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+            <!-- SWOT 4-Quadrant -->
+            <div class="lg:col-span-8 bg-paper brutal-border shadow-brutal grid grid-cols-2 grid-rows-2">
+                <div
+                    class="p-6 border-r-4 border-b-4 border-dark hover:bg-primary hover:text-white transition-colors group">
+                    <h3 class="font-display font-bold text-2xl mb-4 uppercase">Strengths</h3>
+                    <ul class="font-body font-medium space-y-2 list-disc pl-5">
+                        <li>Brand trust</li>
+                        <li>Private label margins</li>
+                        <li>Omnichannel network</li>
+                        <li>Nykaa Ads revenue</li>
+                    </ul>
+                </div>
+                <div class="p-6 border-b-4 border-dark hover:bg-warning hover:text-dark transition-colors">
+                    <h3 class="font-display font-bold text-2xl mb-4 uppercase">Weaknesses</h3>
+                    <ul class="font-body font-medium space-y-2 list-disc pl-5">
+                        <li>Speed gap vs. Q-commerce</li>
+                        <li>Fashion scaling</li>
+                        <li>Rising CAC</li>
+                    </ul>
+                </div>
+                <div class="p-6 border-r-4 border-dark hover:bg-secondary hover:text-white transition-colors">
+                    <h3 class="font-display font-bold text-2xl mb-4 uppercase">Opportunities</h3>
+                    <ul class="font-body font-medium space-y-2 list-disc pl-5">
+                        <li>AI personalization</li>
+                        <li>Private label data flywheel</li>
+                        <li>International expansion</li>
+                        <li>Nykaa Quick scale-up</li>
+                    </ul>
+                </div>
+                <div class="p-6 hover:bg-red-500 hover:text-white transition-colors">
+                    <h3 class="font-display font-bold text-2xl mb-4 uppercase">Threats</h3>
+                    <ul class="font-body font-medium space-y-2 list-disc pl-5">
+                        <li>Quick commerce basket erosion</li>
+                        <li>Tira/Purplle aggression</li>
+                        <li>D2C bypass</li>
+                        <li>Margin pressure</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Drivers Stack -->
+            <div class="lg:col-span-4 flex flex-col gap-6 w-full">
+                <div class="p-6 bg-white brutal-border shadow-brutal border-l-8 border-l-primary flex-grow">
+                    <span class="font-mono text-xs uppercase opacity-75 font-bold mb-2 block tracking-widest">User
+                        Driver</span>
+                    <p class="font-bold text-xl uppercase">"Want Inspiration + Instant Gratification" 🧠</p>
+                </div>
+                <div class="p-6 bg-white brutal-border shadow-brutal border-l-8 border-l-secondary flex-grow">
+                    <span class="font-mono text-xs uppercase opacity-75 font-bold mb-2 block tracking-widest">Product
+                        Driver</span>
+                    <p class="font-bold text-xl uppercase">"AI + Private Label Data Moat" 🤖</p>
+                </div>
+                <div class="p-6 bg-white brutal-border shadow-brutal border-l-8 border-l-accent flex-grow">
+                    <span class="font-mono text-xs uppercase opacity-75 font-bold mb-2 block tracking-widest">Market
+                        Driver</span>
+                    <p class="font-bold text-xl uppercase">Beauty Market <span
+                            class="font-mono bg-accent text-dark px-1">12-15% CAGR</span> 📈</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 5: OPPORTUNITY ZONES -->
+    <section id="opportunity-zones"
+        class="py-24 px-6 lg:px-16 border-b-4 border-dark bg-dark text-white relative overflow-hidden">
+        <!-- Abstract BG elements -->
+        <div
+            class="absolute top-0 right-0 w-96 h-96 bg-primary opacity-20 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 pointer-events-none">
+        </div>
+
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <!-- Core Insight Card -->
+            <div class="lg:col-span-5">
+                <div
+                    class="bg-primary text-dark p-8 brutal-border shadow-brutal-lg relative h-full flex flex-col justify-center">
+                    <div
+                        class="absolute -top-6 -left-6 bg-black text-white px-4 py-2 font-mono font-bold brutal-border transform -rotate-3 text-lg z-20">
+                        KEY INSIGHT
+                    </div>
+                    <h2 class="font-display font-extrabold text-3xl mb-6 uppercase">The Shift is Here</h2>
+                    <p class="text-xl font-bold font-body leading-snug">
+                        Nykaa won with Content + Selection. Now Speed + Price are attacking. The answer is using data
+                        and community to build an <span class="bg-white text-dark px-1">AI-Personalized Ecosystem</span>
+                        where private labels and recommendations create value that transactional rivals cannot copy.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Opportunity Grid -->
+            <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+                <div
+                    class="bg-white text-dark p-6 brutal-border border-b-8 border-r-8 border-secondary shadow-brutal flex flex-col brutal-btn cursor-default">
+                    <span class="font-display text-4xl mb-4">01</span>
+                    <h3 class="font-display font-bold text-xl uppercase leading-tight mb-2">AI-First Personalization
+                        Layer 🧠</h3>
+                    <p class="font-body text-sm font-medium opacity-80 mt-auto">Hyper-relevant routines & discovery
+                        specifically tuned for Gen Z.</p>
+                </div>
+
+                <div
+                    class="bg-white text-dark p-6 brutal-border border-b-8 border-r-8 border-primary shadow-brutal flex flex-col brutal-btn cursor-default relative">
+                    <div
+                        class="absolute -top-4 -right-4 bg-paper text-dark font-mono text-xs font-bold px-2 py-1 brutal-border transform rotate-12 z-20 shadow-sm">
+                        EXPLORE</div>
+                    <span class="font-display text-4xl mb-4 text-primary">02</span>
+                    <h3 class="font-display font-bold text-xl uppercase leading-tight mb-2">Private Label Data Flywheel
+                        🔄</h3>
+                    <p class="font-body text-sm font-medium opacity-80 mt-auto">Launch trending products faster by
+                        harvesting search/review signals.</p>
+                </div>
+
+                <div
+                    class="bg-white text-dark p-6 brutal-border border-b-8 border-r-8 border-accent shadow-brutal flex flex-col brutal-btn cursor-default">
+                    <span class="font-display text-4xl mb-4">03</span>
+                    <h3 class="font-display font-bold text-xl uppercase leading-tight mb-2">Tier 2/3 Vernacular 🌍</h3>
+                    <p class="font-body text-sm font-medium opacity-80 mt-auto">Local language UI and assisted commerce
+                        for rapid growth cohorts.</p>
+                </div>
+
+                <div
+                    class="bg-white text-dark p-6 brutal-border border-b-8 border-r-8 border-secondary shadow-brutal flex flex-col brutal-btn cursor-default">
+                    <span class="font-display text-4xl mb-4">04</span>
+                    <h3 class="font-display font-bold text-xl uppercase leading-tight mb-2">Men's Grooming Shop 👨</h3>
+                    <p class="font-body text-sm font-medium opacity-80 mt-auto">Capture the 2x growing male segment with
+                        highly curated bundles.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 6: CTA & CONTACT -->
+    <section id="contact-cta"
+        class="min-h-[80vh] flex flex-col items-center justify-center py-24 px-6 relative bg-paper zine-grid">
+
+        <div
+            class="max-w-[800px] w-full bg-white brutal-border border-t-[16px] border-t-primary shadow-[12px_12px_0px_#1A1A1A] p-10 lg:p-16 text-center transform transition-transform hover:-translate-y-1">
+            <h2 class="font-display font-extrabold text-4xl lg:text-6xl mb-6 uppercase tracking-tight leading-[1]">This
+                is a space I'd genuinely love to explore deeper.</h2>
+            <p class="font-body text-lg lg:text-xl font-medium mb-12">
+                I'm currently looking for an internship for Summer 2026, and would be excited to work on problems like
+                this with your team.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-12">
+                <a href="https://calendly.com/kunjharjai13/30min" target="_blank"
+                    class="brutal-btn bg-primary text-white font-mono font-bold text-lg px-8 py-4 brutal-border uppercase w-full sm:w-auto">
+                    Schedule a 15-min Chat →
+                </a>
+                <a href="https://www.linkedin.com/in/kunjharjai/" target="_blank"
+                    class="brutal-btn bg-secondary text-white font-mono font-bold text-lg px-8 py-4 brutal-border uppercase w-full sm:w-auto">
+                    LinkedIn →
+                </a>
+            </div>
+
+            <div
+                class="font-mono border-t-4 border-dark pt-8 flex flex-col sm:flex-row items-center justify-center gap-8 text-left">
+                <div>
+                    <span class="block text-sm opacity-50 uppercase font-bold">Name</span>
+                    <span class="text-xl font-bold">Kunj Harjai</span>
+                </div>
+                <div>
+                    <span class="block text-sm opacity-50 uppercase font-bold">Email</span>
+                    <span
+                        class="text-xl font-bold bg-white hover:bg-primary hover:text-white transition-colors">Kunj.24141@sscbs.du.ac.in</span>
+                </div>
+                <div>
+                    <span class="block text-sm opacity-50 uppercase font-bold">Phone</span>
+                    <span class="text-xl font-bold">+91 93 109 29 096</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Float Stamp -->
+        <div class="absolute bottom-0 left-0 w-full bg-accent border-t-4 border-dark py-3 px-6 overflow-hidden">
+            <div
+                class="font-mono font-bold text-dark uppercase animate-marquee hover:animation-paused flex whitespace-nowrap">
+                <span class="px-8">💡 I have some rough thoughts on AI personalization frameworks — happy to share if
+                    useful.</span>
+                <span class="px-8">💡 I have some rough thoughts on AI personalization frameworks — happy to share if
+                    useful.</span>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- JS for Intersection Observer Animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.2 // Trigger when 20% of section is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        // Optional: observer.unobserve(entry.target) if you only want it to animate once.
+                    } else {
+                        // Removing class allows it to animate again when scrolling back up
+                        entry.target.classList.remove("is-visible");
+                    }
+                });
+            }, observerOptions);
+
+            const sectionsToAnimate = document.querySelectorAll(".obs-section");
+            sectionsToAnimate.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+
+</html>
